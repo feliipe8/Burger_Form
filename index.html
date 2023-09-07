@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Formulario McDonald's</title>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+
+	<style>
+		/* Estilos para centrar el título */
+		h2 {
+			text-align: center;
+		}
+	</style>
+
+	<script>
+
+		let pst, frm;
+
+		window.onload = function () {
+		
+			frm = document.getElementById('form-demo');
+			pst = new Pristine(frm);
+
+			frm.addEventListener('submit', function (e) {
+				e.preventDefault();
+				console.log("test!");
+				// Verificar si el formulario es válido
+				var valid = pst.validate();//devuelve true o false
+				frm.classList.add("was-validated");
+			});
+			frm.addEventListener('reset', function (e) {
+				frm.classList.remove("was-validated");
+			});
+		};
+		
+	</script>
+</head>
+<body>
+
+<form id="form-demo" novalidate method="post" class="container">
+		<input type="hidden"/>
+	<h2>Por favor llene este formulario con su orden</h2>
+	<div class="form-group">
+		<label>Dirección (requerida)</label>
+		<input type="text" class="form-control" required />
+	</div>
+	<div class="form-group">
+		<label>Nombre (requerido)</label>
+		<input type="text" class="form-control" required />
+	</div>
+	<div class="form-group">
+		<label>Apellido (mínimo 5 caracteres, opcional)</label>
+		<input type="text" class="form-control" minlength="5" />
+	</div>
+	<div class="form-group">
+		<label>Correo Electrónico (opcional)</label>
+		<input type="email" class="form-control" />
+	</div>
+	<div class="form-group">
+		<label>Número de Teléfono (opcional)</label>
+		<input type="number" class="form-control" />
+	</div>
+	<div class="form-group">
+		<label>Cantidad de Hamburguesas (mínimo 1, máximo 10, requerido)</label>
+		<input type="number" class="form-control" min="1" max="10" required />
+	</div> 
+	<div class="form-group"> 
+		<label>Bebida (requerida)</label>
+		<select required>
+			<option value="">-----</option>
+			<option value="cc">Coca-Cola</option>
+			<option value="sp">Sprite</option>
+			<option value="co">Colombiana</option>
+			<option value="ps">Pepsi</option>
+			<option value="ht">Hatsu</option>
+		</select>
+	</div>
+	<label>Salsas (seleccione al menos dos): </label>
+	<div class="form-group inline-label form-check" >
+		<p>Requerido, mínimo 2</p>
+
+		<input id="ch1" type="checkbox" class="form-check-input" name="salsas" required data-pristine-min-message="Seleccione al menos 2"/>
+		<label for="ch1">Mostaza</label><br />
+
+		<input id="ch2" type="checkbox" class="form-check-input" name="salsas" required data-pristine-min-message="Seleccione al menos 2"/>
+		<label for="ch2">Ketchup</label><br />
+
+		<input id="ch3" type="checkbox" class="form-check-input" name="salsas" required data-pristine-min-message="Seleccione al menos 2"/>
+		<label for="ch3">Mayonesa</label><br />
+
+		<input id="ch4" type="checkbox" class="form-check-input" name="salsas" required data-pristine-min-message="Seleccione al menos 2"/>
+		<label for="ch4">BBQ</label>
+	</div>
+	<div class="form-group">
+		<label>Cupones (máximo 10 caracteres, opcional)</label>
+		<input type="text" class="form-control" maxlength="10" />
+	</div>
+	<div class="form-group">
+		<label>Comentarios (opcional)</label>
+		<input type="text" class="form-control" />
+	</div>
+	<div class="form-group">
+		<input type="submit" class="btn btn-success" value="Enviar" />
+		<input type="reset" class="btn btn-secondary" value="Restablecer" />
+	</div>
+</form>
+<script src="js/vendor/pristine.min.js"></script>
+</body>
+</html>
